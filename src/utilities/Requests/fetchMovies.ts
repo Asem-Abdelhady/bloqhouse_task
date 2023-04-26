@@ -4,13 +4,11 @@ import axios from 'axios';
 
 const fetchMovies = async (): Promise<IMovieSchema[]> => {
   try {
-    const res = await axios.get<IMovieSchema[]>(`${BASE_URL}/users/${USER_ID}/loved`, {
+    const res = await axios.get<IMovieSchema[]>(`${BASE_URL}/users/${USER_ID}/watched`, {
       headers: {
         authorization: `Bearer ${USER_TOKEN}`
       }
     });
-
-    console.log('Movies in fetch: ', res.data);
 
     return res.data;
   } catch (err) {

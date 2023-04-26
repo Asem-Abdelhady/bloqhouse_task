@@ -20,8 +20,7 @@ defineProps<{
             vote_average: movie.vote_average,
             id: movie.id,
             vote_count: movie.vote_count,
-            release_date: `${movie.release_date}`,
-            _id: `${movie._id}`
+            release_date: `${movie.release_date}`
           }"
         />
       </div>

@@ -1,17 +1,30 @@
-<script setup lang="ts">
-import MoviesList from '@/components/MoviesList.vue';
+<script lang="ts">
 import type IMovieSchema from '@/intefaces/MovieSchema';
 import fetchMovies from '@/utilities/Requests/fetchMovies';
-import { reactive } from 'vue';
+import MoviesList from '@/components/MoviesList.vue';
+import { defineComponent, ref, type Ref } from 'vue';
 
-//
+export default defineComponent({
+  setup() {
+    const movies: Ref<IMovieSchema[]> = ref([]);
+    fetchMovies().then((ms) => {
+      movies.value = ms;
+    });
 
-const movies: IMovieSchema[] = reactive(await fetchMovies());
-console.log('Movies: ', movies);
+    return {
+      movies
+    };
+  },
+  components: {
+    MoviesList
+  }
+});
 </script>
+
 <template>
   <MoviesList :movies="movies" />
 </template>
+
 <style>
 .movie-form {
   position: fixed;
